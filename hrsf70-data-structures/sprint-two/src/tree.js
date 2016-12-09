@@ -1,10 +1,10 @@
 var Tree = function(value) {
   var newTree = {};
   newTree.value = value;
-  newTree.addChild = treeMethods.addChild;
-  newTree.contains = treeMethods.contains;
   // your code here
-  newTree.children = null;  // fix me
+  newTree.children = [];  // fix me
+
+  _.extend(newTree, treeMethods)
 
   return newTree;
 };
@@ -12,36 +12,25 @@ var Tree = function(value) {
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
-  if(!this.children){
-    this.children = [];
     this.children.push(Tree(value));
-  }else{
-    this.children.push(Tree(value));
-  }
 };
 
 treeMethods.contains = function(target) {
-  var children = this.children //array
-  console.log(children);
-    function inner(child){
-      var bool = false;
-       for(var i = 0; i< child.length;i++){
-          if(child[i].value === target){
-              bool = true;
-              console.log(bool);
-              return bool;
-          }else{
-            if(child[i].children){
-            inner(child[i].children);
-            }
-          }
-       }
-       console.log(bool)
-       return bool;
+  var children = this; //array
+  var bool = false;
+  function inner(child){
+    if(child.value === target){
+      bool = true;
+    }else if(child.children){
+      for(var i = 0; i< child.children.length;i++){
+        inner(child.children[i]);
+      }
     }
-
-    return inner(children);
+  }
+  inner(children);
+  return bool;
 };
+
 
 // var tree = newTree 
 
