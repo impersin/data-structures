@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	
+var myArray = [2, 3, 4, 5];
+console.log(myArray);
+var ourArray = myArray;
+console.log(ourArray);
+ourArray[2] = 25;
+console.log(ourArray, myArray);
+ourArray = undefined;
+console.log(ourArray,myArray);
+
+var obj = {
+	a:function(){
+		console.log('abcde');
+	}
+}
+console.log(obj["a"]);
+
+obj["a"].age=37;
+console.log(obj["a"].age)
+/*console.log(typeof obj["a"].age,typeof obj["a"]);*/
+console.log(obj["a"]);
+</script>
+</body>
+</html>
