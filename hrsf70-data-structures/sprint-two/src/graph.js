@@ -3,6 +3,7 @@ var Graph = function() {
 
 };
 
+
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
   this[node] = [];
@@ -19,10 +20,14 @@ Graph.prototype.contains = function(node) {
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
-    for(var key in this){
-      
-    }  
+  if(this.contains(node)){
+    this[node].forEach(function(ele){
+      this.removeEdge(ele, node);
+    },this);
+  }
+
   delete this[node];
+    
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
@@ -46,6 +51,11 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
+  for(var props in this){
+    if(Array.isArray(this[props])){
+      cb(parseInt(props));
+    }
+  }
 };
 
 /*
