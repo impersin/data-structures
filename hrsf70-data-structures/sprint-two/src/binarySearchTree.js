@@ -56,7 +56,6 @@ BinarySearchTree.prototype.contains = function(target) {
       }
     }
   }
-  console.log(start);
   return traverse(start); //<---
 }
 
